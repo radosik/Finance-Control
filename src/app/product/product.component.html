@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <pre>{{ items | async | json }}</pre>
+      <div class="form-group">
+        <input type="text" class="form-control" #newcheck placeholder="Check" />
+        <input type="text" class="form-control" #newname placeholder="Name" />
+        <div>
+          <input type="text" class="form-control" #newcount placeholder="Count of Product" />
+          <select class="form-control" id="exampleSelect1" #newsize style="width: auto">
+            <option>l</option>
+            <option>ml</option>
+            <option>kg</option>
+            <option>g</option>
+            <option>unid</option>
+          </select>
+        </div>
+        <input type="text" class="form-control" #newunidcount placeholder="Count" />
+        <input type="text" class="form-control" #newcost placeholder="Cost" />
+        <button
+          (click)="save(newcheck.value,newname.value,newcount.value,newsize.value,newunidcount.value,newcost.value)"
+          type="submit" class="btn btn-dark btn-block">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

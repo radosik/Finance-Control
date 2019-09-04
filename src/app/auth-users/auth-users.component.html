@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div *ngIf="afAuth.user | async as user; else showLogin">
+        <h1>Hello {{ user.displayName }}!</h1>
+        <button (click)="logout()" type="button" class="btn btn-outline-dark">Logout</button>
+        <nav>
+            <button class="nav-link" class="btn btn-outline-dark" routerLink="/product">Add Check</button>
+        </nav>
+        <nav>
+            <button class="nav-link" class="btn btn-outline-dark" routerLink="/totals">Totals</button>
+        </nav>
+      </div>
+      <ng-template #showLogin>
+        <p>Please login.</p>
+        <button (click)="login()" type="button" class="btn btn-outline-dark">Login with Google</button>
+      </ng-template>
+    </div>
+  </div>
+</div>
