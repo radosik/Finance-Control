@@ -7,16 +7,16 @@
                     <div class="grid-item-2-h , grid-item">Info</div>
                     <div class="grid-item-3-h , grid-item">Description</div>
                 </div>
-                <div class="grid-container" *ngFor="let item of items | async">
-                    <div class="grid-item-1 , grid-item">{{ item['name'] }}</div>
-                    <div class="grid-item-2 , grid-item">{{ item['description'] }}</div>
-                    <div class="grid-item-3 , grid-item">{{ item['info'] }}</div>    
+                <div class="grid-container"  *ngFor="let item of items | async">
+                    <div class="grid-item-1 , grid-item">{{ item.name }}</div>
+                    <div class="grid-item-2 , grid-item">{{ item.description }}</div>
+                    <div class="grid-item-3 , grid-item">{{ item.info }}</div>    
                 </div>
             </div>
             <input type="text" class="form-control" #newname placeholder="Name" />
             <input type="text" class="form-control" #newdesc placeholder="Description" />
             <input type="text" class="form-control" #newinfo placeholder="Info" />
-            <button (click)="save(newname.value,newdesc.value,newinfo.value)" class="btn btn-dark btn-block" type="submit">Save</button>
+            <button (click)="addItemShop(newname.value,newdesc.value,newinfo.value)" class="btn btn-dark btn-block" type="submit">Save</button>
         </div>
     </div>
 </div>

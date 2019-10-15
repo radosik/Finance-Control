@@ -1,35 +1,34 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject, AngularFireList } from '@angular/fire/database';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { ShopsService } from './shops.service';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shops',
   templateUrl: './shops.component.html',
-  styleUrls: ['./shops.component.scss']
+  styleUrls: ['./shops.component.scss'],
+  providers: [ShopsService]  
 })
 export class ShopsComponent {
+  items: Observable<any[]>;
+  result: Object;
 
-  constructor(private db: AngularFireDatabase) { 
-    this.itemRef = db.object(`/shops`);
-    this.items = db.list('shops').valueChanges(); 
+  constructor(private _mS: ShopsService) {
+    this.items = this._mS.getListShop();
+    this.result = {id: null, status: false};
   }
 
-  items: Observable<any[]>;
-  itemRef: AngularFireObject<any>;
-
-  save = (newName: string, newDesc: string, newInfo: string) => {
-    let timestamp = new Date(); 
-    let unixtime = timestamp.valueOf();    
-    let collections = {}; 
-    collections[unixtime] = {
-        id: unixtime,
-        name: newName,
-        description: newDesc,
-        info: newInfo,
-    };
-    this.db.database.ref('shops').child('1567506263213').child('name').equalTo('Dia').on('value', function(snapshot) {
-      alert('error');
-    });
-    this.itemRef.update(collections);
+  addItemShop(newName: string, newDesc: string, newInfo: string) {
+    //this._mS.getItemShopByName(newName);
+    console.log('step 3');
+    this._mS.setItemShop(newName,newDesc,newInfo,this.resultOperation);
+    console.log('step 4');
+    console.log('result',this.result);
+  }
+  
+  resultOperation(result) {
+    console.log('step 5');
+    console.log(result.id);
+    this.result = result;
   }
 }

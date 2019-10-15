@@ -10,7 +10,7 @@ export const environment = {
     databaseURL: "https://finance-control-1f019.firebaseio.com",
     projectId: "finance-control-1f019",
     storageBucket: "finance-control-1f019.appspot.com",
-    messagingSenderId: "926444043759",
+    appId: "1:926444043759:web:f98961d158ceb91d"
   }
 };
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -26,6 +27,7 @@ import { JSONTableModule } from 'angular-json-table';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     AngularFireDatabaseModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
