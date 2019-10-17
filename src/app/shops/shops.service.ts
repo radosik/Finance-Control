@@ -18,31 +18,22 @@ export class ShopsService {
         return this.items;
     }
 
-    async setItemShop (newName: string,newDesc: string,newInfo: string, func: Function) {
-        let result = {id: null, status: false}
-        if(newName != "") {
-            await this.docRef.add({ name: newName, description: newDesc, info: newInfo})
-                .then(function(docRef){
-                   result.id = docRef.id;
-                   result.status = true;
-                   func(result);
-                })
-        } 
-    }
-
-    getItemShopByName(name: string) {
-        let result = {id: null, status: false}
+    setItemShop (newName: string,newDesc: string,newInfo: string) {
+        let result = null;
+        let _self = this;
         this.docRef.ref.get().then(function(querySnapshot) {
-            console.log('step 1');            
+            console.log(result);            
             querySnapshot.forEach(function(doc) {
-                if(name == doc.data().name) {
-                    result.status = true;
-                    result.id = doc.id;
+                if(newName == doc.data().name) {
+                    result = doc.id;
+                    console.log(result);
                 }
             }); 
-        }).then(function() {
-            console.log('step 2');            
-            console.log(result.status);
-        });
+        }).then(function(){
+            console.log(result);            
+            if (result == null) {
+                _self.docRef.add({ name: newName, description: newDesc, info: newInfo})
+            }
+        })        
     }
 }
