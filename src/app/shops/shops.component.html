@@ -10,7 +10,8 @@
                 <div class="grid-container"  *ngFor="let item of items | async">
                     <div class="grid-item-1 , grid-item">{{ item.name }}</div>
                     <div class="grid-item-2 , grid-item">{{ item.description }}</div>
-                    <div class="grid-item-3 , grid-item">{{ item.info }}</div>    
+                    {{item.ids}}
+                    <div class="grid-item-3 , grid-item">{{ item.info }}<button class="btn btn-dark btn-block , delBut" (click)="deleteItemShop(item.ids)" type="submit">Delete</button></div>    
                 </div>
             </div>
             <input type="text" class="form-control" #newname placeholder="Name" />

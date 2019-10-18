@@ -15,25 +15,33 @@ export class ShopsService {
         this.items = this.docRef.valueChanges();
     }
     getListShop() {
+        console.log(this.docRef.ref.id);
         return this.items;
     }
 
     setItemShop (newName: string,newDesc: string,newInfo: string) {
         let result = null;
         let _self = this;
-        this.docRef.ref.get().then(function(querySnapshot) {
-            console.log(result);            
+        this.docRef.ref.get().then(function(querySnapshot) {         
             querySnapshot.forEach(function(doc) {
                 if(newName == doc.data().name) {
                     result = doc.id;
-                    console.log(result);
                 }
-            }); 
+            });             
         }).then(function(){
             console.log(result);            
             if (result == null) {
-                _self.docRef.add({ name: newName, description: newDesc, info: newInfo})
+                let _id = _self.docRef.ref.doc();
+                console.log(_id.id);
+                _self.docRef.add({ name: newName, description: newDesc, info: newInfo, id: _id.id })
+            } else {
+
             }
         })        
+    }
+
+    deleteItemShop (newId: string) {
+        console.log(newId);
+        this.docRef.doc(newId).delete();
     }
 }

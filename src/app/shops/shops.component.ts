@@ -20,4 +20,9 @@ export class ShopsComponent {
   addItemShop(newName: string, newDesc: string, newInfo: string) {
       this._mS.setItemShop(newName,newDesc,newInfo);     
   }
+
+  deleteItemShop(newId: string) {
+    this._mS.deleteItemShop(newId);
+  }
+
 }
