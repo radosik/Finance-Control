@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore,AngularFirestoreDocument,AngularFirestoreCollection } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
-import { removeSummaryDuplicates } from '@angular/compiler';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ShopsService {
@@ -12,10 +12,17 @@ export class ShopsService {
 
     constructor(db: AngularFirestore) {
         this.docRef = db.collection("shops");
-        this.items = this.docRef.valueChanges();
+        this.items = this.docRef.snapshotChanges().pipe(
+            map(
+                changes => { return changes.map(a => {
+                    const data = a.payload.doc.data();
+                    data.id = a.payload.doc.id;
+                    return data;
+                });
+              }
+        ));
     }
     getListShop() {
-        console.log(this.docRef.ref.id);
         return this.items;
     }
 
@@ -31,9 +38,7 @@ export class ShopsService {
         }).then(function(){
             console.log(result);            
             if (result == null) {
-                let _id = _self.docRef.ref.doc();
-                console.log(_id.id);
-                _self.docRef.add({ name: newName, description: newDesc, info: newInfo, id: _id.id })
+                _self.docRef.add({ name: newName, description: newDesc, info: newInfo})
             } else {
 
             }
@@ -41,7 +46,6 @@ export class ShopsService {
     }
 
     deleteItemShop (newId: string) {
-        console.log(newId);
         this.docRef.doc(newId).delete();
     }
 }

@@ -22,7 +22,6 @@ export class ShopsComponent {
   }
 
   deleteItemShop(newId: string) {
-    
     this._mS.deleteItemShop(newId);
   }
 
