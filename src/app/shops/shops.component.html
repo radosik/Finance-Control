@@ -7,16 +7,20 @@
                     <div class="grid-item-2-h , grid-item">Info</div>
                     <div class="grid-item-3-h , grid-item">Description</div>
                 </div>
-                <div class="grid-container"  *ngFor="let item of items | async">
+                <div class="grid-container" id="ww" *ngFor="let item of items | async">
                     <div class="grid-item-1 , grid-item">{{ item.name }}</div>
-                    <div class="grid-item-2 , grid-item">{{ item.description }}</div>
-                    <div class="grid-item-3 , grid-item">{{ item.info }}<button class="btn btn-dark btn-block , delBut" (click)="deleteItemShop(item.id)" type="submit">Delete</button></div>    
+                    <div class="grid-item-2 , grid-item">{{ item.info }}</div>
+                    <div class="grid-item-3 , grid-item">{{ item.description }}</div>  
+                    <div class="grid-item-4 , grid-item">
+                        <button class="delBut" (click)="deleteItemShop(item.id)" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        <button class="delBut" (click)="editItemShop(item.id, newname.value, newinfo.value, newdesc.value)" style="margin-left: 30px;" type="submit"><i class="fas fa-edit"></i></button>
+                    </div>      
                 </div>
             </div>
             <input type="text" class="form-control" #newname placeholder="Name" />
-            <input type="text" class="form-control" #newdesc placeholder="Description" />
             <input type="text" class="form-control" #newinfo placeholder="Info" />
-            <button (click)="addItemShop(newname.value,newdesc.value,newinfo.value)" class="btn btn-dark btn-block" type="submit">Save</button>
+            <input type="text" class="form-control" #newdesc placeholder="Description" />
+            <button (click)="addItemShop(newname.value,newdesc.value,newinfo.value)" class="btn btn-dark btn-block, addBut" type="submit">Save</button>
         </div>
     </div>
 </div>

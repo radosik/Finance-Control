@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore,AngularFirestoreDocument,AngularFirestoreCollection } from "@angular/fire/firestore";
+import { AngularFirestore,AngularFirestoreCollection } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
 
@@ -22,30 +22,39 @@ export class ShopsService {
               }
         ));
     }
+
     getListShop() {
         return this.items;
     }
 
     setItemShop (newName: string,newDesc: string,newInfo: string) {
-        let result = null;
+        let docAdd = this.docRef.ref.where('name', '==', newName);
+        let result = false;
         let _self = this;
-        this.docRef.ref.get().then(function(querySnapshot) {         
-            querySnapshot.forEach(function(doc) {
-                if(newName == doc.data().name) {
-                    result = doc.id;
-                }
-            });             
-        }).then(function(){
-            console.log(result);            
-            if (result == null) {
+        docAdd.get().then((querySnapshot) => { 
+            if (querySnapshot.size == 0) {        
+                result = true;
+            }
+        }).then(function(){           
+            if (result) {
                 _self.docRef.add({ name: newName, description: newDesc, info: newInfo})
             } else {
-
+                console.log('err');
             }
         })        
     }
 
     deleteItemShop (newId: string) {
         this.docRef.doc(newId).delete();
+    }
+
+    editItemShop (newId: string, newName: string, newInfo: string, newDesc: string) {
+        //this.docRef.doc(newId).set({name: newName, info: newInfo, description: newDesc});
+        let x = document.getElementsByClassName('grid-item');
+        let input = document.createElement('input');
+        input.className = "form-control";
+        for(let i = 0;i < x.length;i++) {
+            x[i].appendChild(input);
+        }
     }
 }

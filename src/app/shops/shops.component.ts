@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ShopsService } from './shops.service';
 import { Observable } from 'rxjs';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-shops',
@@ -23,6 +21,10 @@ export class ShopsComponent {
 
   deleteItemShop(newId: string) {
     this._mS.deleteItemShop(newId);
+  }
+
+  editItemShop(newId: string, newName: string, newDesc: string, newInfo: string) {
+    this._mS.editItemShop(newId, newName, newDesc, newInfo);
   }
 
 }

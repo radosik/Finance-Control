@@ -1,23 +1,22 @@
 input {
-    width: 25%,
+    width: 25%;
 }
 
-button {
-    width: 10%,
-}
-
-.delBut:hover {
-    display: block;
-}
-
-.delBut {
+.delBut { 
     display: none;
-    float: left;
+}
+
+p {
+    border: 1px solid black;
+}
+
+.addBut {
+    width: 10%;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-columns: 30% 30% 30% 10%;
     padding-top: 0.9rem;
     padding-bottom: 0.8rem;
     border-bottom: 1px solid #c9c9c9;
@@ -28,14 +27,16 @@ button {
     background-color: #dad8d8;
     .delBut {
         display: block;
-        transition-duration: 0.3s;
-        background-color: #dad8d8;
+        margin: 0px;
+        border: 0px;
+        position: absolute;
+        background: none;
     }
 }
 
 .grid-header {
     display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-columns: 30% 30% 30% 10%;
     padding-bottom: 10px;
     padding-top: 10px;
     font-size: 20px;
