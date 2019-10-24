@@ -50,11 +50,10 @@ export class ShopsService {
 
     editItemShop (newId: string, newName: string, newInfo: string, newDesc: string) {
         //this.docRef.doc(newId).set({name: newName, info: newInfo, description: newDesc});
-        let x = document.getElementsByClassName('grid-item');
+        let x = document.getElementsByClassName('grid-container');
         let input = document.createElement('input');
         input.className = "form-control";
         for(let i = 0;i < x.length;i++) {
-            x[i].appendChild(input);
         }
     }
 }

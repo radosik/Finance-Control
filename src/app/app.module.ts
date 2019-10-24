@@ -21,7 +21,7 @@ import { JSONTableModule } from 'angular-json-table';
     AuthUsersComponent,
     ShopsComponent,
     ProductComponent,
-    TotalsComponent
+    TotalsComponent,
   ],
   imports: [
     BrowserModule,
