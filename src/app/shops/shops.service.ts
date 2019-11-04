@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ElementRef, Renderer2, ViewChild } from "@angular/core";
 import { AngularFirestore,AngularFirestoreCollection } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
@@ -9,6 +9,8 @@ export class ShopsService {
     resultId: any;
     items: Observable<any[]>;
     _self = this;
+
+   
 
     constructor(db: AngularFirestore) {
         this.docRef = db.collection("shops");
@@ -48,12 +50,7 @@ export class ShopsService {
         this.docRef.doc(newId).delete();
     }
 
-    editItemShop (newId: string, newName: string, newInfo: string, newDesc: string) {
-        //this.docRef.doc(newId).set({name: newName, info: newInfo, description: newDesc});
-        let x = document.getElementsByClassName('grid-container');
-        let input = document.createElement('input');
-        input.className = "form-control";
-        for(let i = 0;i < x.length;i++) {
-        }
+    editItemShop (newId: string, newName: string, newInfo: string, newDesc: string, i: string) {
+        //console.log(this.rd); 
     }
 }

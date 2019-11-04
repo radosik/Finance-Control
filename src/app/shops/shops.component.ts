@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import { ShopsService } from './shops.service';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,9 @@ import { Observable } from 'rxjs';
 export class ShopsComponent {
   items: Observable<any[]>;
 
-  constructor(private _mS: ShopsService) {
+  @ViewChild('itemSet', {static: false}) el:ElementRef;
+
+  constructor(private _mS: ShopsService,  private rd: Renderer2) {
     this.items = this._mS.getListShop();
   }
 
@@ -23,8 +25,13 @@ export class ShopsComponent {
     this._mS.deleteItemShop(newId);
   }
 
-  editItemShop(newId: string, newName: string, newDesc: string, newInfo: string) {
-    this._mS.editItemShop(newId, newName, newDesc, newInfo);
+  editItemShop(newId: string, newName: string, newDesc: string, newInfo: string, i: string) {
+    this._mS.editItemShop(newId, newName, newDesc, newInfo, i);
+  }
+
+
+  ngAfterViewInit() {
+    console.log(this.el.nativeElement);
   }
 
 }
