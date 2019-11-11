@@ -8,10 +8,10 @@
                     <div class="grid-item-3-h grid-item">Description</div>
                 </div>
                 <div class="grid-wrapper">
-                    <div class="grid-container" #itemSet>
-                        <input type="text" class="form-control grid-item-1" #newname placeholder="Name" style="width:90%; margin-left: 5px;"/>
-                        <input type="text" class="form-control grid-item-2" #newinfo placeholder="Info" style="width:90%; margin-left: 5px;"/>
-                        <input type="text" class="form-control grid-item-3" #newdesc placeholder="Description" style="width:90%; margin-left: 5px;"/>
+                    <div class="grid-container itemSet" #itemSet>
+                        <input type="text" class="form-control grid-item-1 inputSet" #newnameSet placeholder="Name"/>
+                        <input type="text" class="form-control grid-item-2 inputSet" #newinfoSet placeholder="Info"/>
+                        <input type="text" class="form-control grid-item-3 inputSet" #newdescSet placeholder="Description"/>
                         <button (click)="editItemShop(item.id, newname.value, newinfo.value, newdesc.value)" style="border: 0" type="submit"><i class="fas fa-edit"></i></button>
                     </div>    
                     <div id="line-{{i}}" class="grid-container" *ngFor="let item of items | async; index as i">

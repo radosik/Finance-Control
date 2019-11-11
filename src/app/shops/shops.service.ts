@@ -50,7 +50,6 @@ export class ShopsService {
         this.docRef.doc(newId).delete();
     }
 
-    editItemShop (newId: string, newName: string, newInfo: string, newDesc: string, i: string) {
-        //console.log(this.rd); 
+    editItemShop (newId: string, newName: string, newInfo: string, newDesc: string, i: number) {
     }
 }
